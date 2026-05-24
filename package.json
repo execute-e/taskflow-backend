@@ -1,0 +1,26 @@
+{
+  "name": "taskflow-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "scripts": {
+    "dev:backend": "pnpm --filter backend dev",
+    "dev:tg-bot": "pnpm --filter tg-bot dev",
+    "build:backend": "pnpm --filter backend build",
+    "build:bot": "pnpm --filter tg-bot build",
+    "build": "pnpm build:backend && pnpm build:bot",
+    "prisma:generate": "pnpm --filter @taskflow/database prisma:generate",
+    "prisma:migrate": "pnpm --filter backend prisma:migrate",
+    "prisma:studio": "pnpm --filter backend prisma:studio",
+    "generate:types": "pnpm --filter database generate:types",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.33.2",
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  }
+}
