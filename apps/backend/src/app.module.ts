@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { IS_DEV_ENV } from '@taskflow/shared';
 import { UserModule } from './core/user/user.module';
 import { PrismaModule } from './config/db/PrismaService/prisma.module';
+import { AuthModule } from './core/auth/auth.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { PrismaModule } from './config/db/PrismaService/prisma.module';
     }),
     PrismaModule,
     UserModule,
+    AuthModule,
   ],
 })
 export class AppModule {}

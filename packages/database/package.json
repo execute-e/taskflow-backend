@@ -15,8 +15,9 @@
     }
   },
   "scripts": {
-    "prisma:generate": "prisma generate --schema=./src/prisma/schema.prisma",
-    "prisma:migrate": "prisma migrate dev --schema=./src/prisma/schema.prisma --name",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev --name",
+    "prisma:studio": "prisma studio",
     "build": "prisma generate"
   },
   "keywords": [],

@@ -44,15 +44,9 @@ export class UserRepository {
   }
 
   async findByEmail(email: string) {
-    const user = await this.prismaService.user.findUnique({
+    return this.prismaService.user.findUnique({
       where: { email },
       include: { accounts: true },
     });
-
-    if (!user) {
-      throw new HttpException('User not found!', HttpStatus.NOT_FOUND);
-    }
-
-    return user;
   }
 }
