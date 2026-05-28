@@ -24,6 +24,7 @@
     "@nestjs/core": "^11.0.1",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^11.0.1",
+    "@nestlab/google-recaptcha": "^3.11.2",
     "@prisma/adapter-pg": "^7.8.0",
     "@taskflow/database": "workspace:*",
     "@taskflow/shared": "workspace:*",

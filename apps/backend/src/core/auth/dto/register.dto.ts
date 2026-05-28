@@ -1,35 +1,39 @@
 import {
   IsEmail,
   IsNotEmpty,
+  IsOptional,
   IsString,
+  MaxLength,
   MinLength,
   Validate,
 } from 'class-validator';
-import { PASSWORD_MIN_LENGTH } from 'src/shared/consts/user-settings';
-import { IsPasswordsMatchingConstraint } from 'src/shared/decorators/is-passwords-matching-decorator';
+import {
+  DISPLAY_NAME_MAX_LENGTH,
+  PASSWORD_MIN_LENGTH,
+} from '@/shared/consts/user-settings';
+import { IsPasswordsMatchingConstraint } from '@/shared/decorators/is-passwords-matching-decorator';
 
 export class RegisterDto {
-  @IsString({ message: 'displayName must be a string' })
-  @IsNotEmpty({ message: 'displayName is required' })
+  @IsString()
+  @IsNotEmpty()
+  @MaxLength(DISPLAY_NAME_MAX_LENGTH)
   displayName: string;
 
-  @IsString({ message: 'email must be a string' })
-  @IsEmail({}, { message: 'Incorrect email format' })
-  @IsNotEmpty({ message: 'email is required' })
+  @IsString()
+  @IsEmail()
+  @IsNotEmpty()
   email: string;
 
-  @IsString({ message: 'password must be a string' })
-  @IsNotEmpty({ message: 'password is required' })
-  @MinLength(PASSWORD_MIN_LENGTH, {
-    message: `password must be at least ${PASSWORD_MIN_LENGTH} characters long`,
-  })
-  password: string;
+  @IsOptional()
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(PASSWORD_MIN_LENGTH)
+  password?: string;
 
-  @IsString({ message: 'passwordRepeat must be a string' })
-  @IsNotEmpty({ message: 'passwordRepeat is required' })
-  @MinLength(PASSWORD_MIN_LENGTH, {
-    message: `passwordRepeat must be at least ${PASSWORD_MIN_LENGTH}`,
-  })
-  @Validate(IsPasswordsMatchingConstraint, { message: "Passwords don't match" })
-  passwordRepeat: string;
+  @IsOptional()
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(PASSWORD_MIN_LENGTH)
+  @Validate(IsPasswordsMatchingConstraint)
+  passwordRepeat?: string;
 }

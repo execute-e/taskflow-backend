@@ -1,5 +1,5 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/config/db/PrismaService/PrismaService';
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from '@/config/db/PrismaService/PrismaService';
 import { CreateUserDto } from './dto/create-user.dto';
 import { hash } from 'argon2';
 
@@ -31,16 +31,10 @@ export class UserRepository {
   }
 
   async findById(id: string) {
-    const user = await this.prismaService.user.findUnique({
+    return this.prismaService.user.findUnique({
       where: { id },
       include: { accounts: true },
     });
-
-    if (!user) {
-      throw new HttpException('User not found!', HttpStatus.NOT_FOUND);
-    }
-
-    return user;
   }
 
   async findByEmail(email: string) {

@@ -1,11 +1,16 @@
-import { UserRole } from '@taskflow/database';
 import 'express-session';
+import { User } from '@taskflow/database';
 
 declare module 'express-session' {
   interface SessionData {
     userId?: string;
-    user?: {
-      role: UserRole;
-    };
+  }
+}
+
+declare global {
+  namespace Express {
+    interface Request {
+      user?: User;
+    }
   }
 }
